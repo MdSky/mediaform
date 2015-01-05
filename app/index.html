@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -23,17 +23,25 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
+          <li class="active"><a ng-href="#">1: Übersicht</a></li>
+          <li><a ng-href="#/address">2: Adresse</a></li>
+          <li><a ng-href="#/finishing">3: Abschliessen</a></li>
         </ul>
-        <h3 class="text-muted">mediaform</h3>
+        <h3 class="text-muted">Bestellung</h3>
       </div>
 
       <div ng-view=""></div>
 
       <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <h3>Haben Sie Fragen zur Online Bestellung?</h3>
+
+        <address>
+          <strong>DigitalSky</strong><br>
+          Allr&uuml;ti 3<br>
+          6343 Rotkreuz ZG<br>
+          <abbr title="Telefon (Mo-Fr, 9-17 Uhr)">T:</abbr> 041 511 22 28<br>
+          <a href="mailto:#">support@digitalsky.ch</a>
+        </address>
       </div>
     </div>
 
@@ -84,8 +92,8 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/overview.js"></script>
+        <script src="scripts/controllers/address.js"></script>
         <!-- endbuild -->
 </body>
 </html>

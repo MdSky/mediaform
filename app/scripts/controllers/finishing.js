@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name mediaformApp.controller:AboutCtrl
+ * @name mediaformApp.controller:MainCtrl
  * @description
- * # AboutCtrl
+ * # MainCtrl
  * Controller of the mediaformApp
  */
 angular.module('mediaformApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('FinishCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
