@@ -1,0 +1,154 @@
+<h2>Neue Medien</h2>
+
+
+<form class="form-horizontal">
+  <table>
+    <thead>
+    <tr>
+      <td style="border-bottom: 1px solid #DDD;"><h3>Quelle</h3></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="padding-top: 15px;">
+        <div class="form-group">
+          <label for="inputSourceType" class="col-sm-2 control-label">Typ</label>
+
+          <div class="col-sm-10">
+            <select id="inputSourceType" class="form-control" ng-model="sourceSel" ng-options="medium.name for medium in sourceMedia"></select>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <label for="inputSourceName" class="col-sm-2 control-label">Beschriftung</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputSourceName" placeholder="Beschriftung der Kassette"
+                   aria-describedby="helpBlock" ng-model="article.sourceName">
+            <span id="helpBlock" class="help-block">Geben Sie an, wie Ihre Kassette beschriftet ist. Dies hilft uns die Kassette zu zu ordnen.</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+    <tr>
+      <td style="border-bottom: 1px solid #DDD;"><h3>Ziel</h3></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="padding-top: 15px;">
+        <div class="form-group">
+          <label for="inputTargetType" class="col-sm-2 control-label">Typ</label>
+
+          <div class="col-sm-10">
+            <select id="inputTargetType" class="form-control" ng-model="targetSel" ng-options="medium.name for medium in targetMedia"></select>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <td><h4>Beschriftung der H&uuml;lle</h4></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label for="inputTargetTitle" class="col-sm-2 control-label">Titel</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputTargetTitle" placeholder="H&uuml;llentitel" ng-model="article.targetTitle">
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label for="inputAmount" class="col-sm-2 control-label">Anzahl</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputAmount" placeholder="Anzahl" ng-model="article.amount">
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="form-group">
+                <label for="inputPrice" class="col-sm-2 control-label">Titel</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputPrice" placeholder="Preis" ng-model="article.price">
+                </div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <fieldset>
+    <legend>Kosten&uuml;bersicht</legend>
+
+    <div class="table-responsive">
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nr</th>
+          <th>Auftrag</th>
+          <th class="text-right">Kosten [CHF]</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>XXXXXXXXXXXXXXXX</td>
+          <td class="text-right">10.00</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>YYYYYYYYYYYYYYYYYYYYYYYYYYYYY</td>
+          <td class="text-right">40.00</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="3" class="text-right"><strong>Total 50.00</strong></td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </fieldset>
+
+  <div class="text-right">
+    <a class="btn btn-default" ng-href="#/" role="button">Abbrechen</a>
+    <a class="btn btn-primary btn-sm" ng-click="cart.addArticle(article);" ng-href="#/" role="button">Hinzuf&uuml;gen</a>
+  </div>
+  <br>
+  </table>
+
+</form>
+

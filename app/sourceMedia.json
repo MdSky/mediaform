@@ -1,0 +1,7 @@
+[
+  {"id": "1", "name": "VHS", "image" : "images/VHS.jpg" },
+  {"id": "2", "name": "VHS-C", "image" : "images/VHS-C.jpg"},
+  {"id": "3", "name": "miniDV", "image" : "images/miniDV.jpg" },
+  {"id": "4", "name": "MC (Musikkassette)", "image" : "images/MC.jpg" }
+]
+s

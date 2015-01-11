@@ -1,8 +1,14 @@
 <h1>Bestell&uuml;bersicht <small>Schritt 1</small></h1>
 
+<div ng-hide="cart.getItems().length" class="alert alert-warning">Noch keine Medien enthalten.</div>
+<div ng-hide="cart.getItems().length" class="text-right">
+<a class="btn btn-success" ng-href="#/newmedia" role="button">Neue Medien hinzuf&uuml;gen</a>
+  <br/>
+</div>
+
 <div class="table-responsive">
 
-  <table class="table">
+  <table class="table" ng-show="cart.getItems().length">
     <thead>
     <tr>
       <th>Nr</th>
@@ -12,32 +18,27 @@
     </thead>
 
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>XXXXXXXXXXXXXXXX</td>
-      <td class="text-right">10.00</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>YYYYYYYYYYYYYYYYYYYYYYYYYYYYY</td>
-      <td class="text-right">40.00</td>
+    <tr ng-repeat="item in cart.getItems() track by $index">
+      <th scope="row">{{item.id}}</th>
+      <td>Name: {{item.name}}  Anzahl: {{item.amount}}</td>
+      <td class="text-right">{{item.price}}</td>
     </tr>
     </tbody>
 
     <tfoot>
     <tr>
       <td colspan="3" class="text-right">
-        <button type="button" class="btn btn-success">Medien hinzuf&uuml;gen</button>
+        <a class="btn btn-success" ng-href="#/newmedia" role="button">Weitere Medien hinzuf&uuml;gen</a>
       </td>
     </tr>
     <tr>
-      <td colspan="3" class="text-right"><strong>Total 50.00</strong></td>
+      <td colspan="3" class="text-right"><strong>Total {{cart.sum() | currency}}</strong></td>
     </tr>
     </tfoot>
   </table>
 
-  <div class="text-right">
-    <button type="button" class="btn btn-primary">weiter</button>
+  <div ng-show="cart.getItems().length" class="text-right" style="margin-top: 15px">
+    <a class="btn btn-primary" ng-href="#/address" role="button">weiter</a>
   </div>
   <br>
 

@@ -8,10 +8,11 @@
  * Controller of the mediaformApp
  */
 angular.module('mediaformApp')
-  .controller('OverviewCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('OverviewCtrl', function ($scope, $http, Cart) {
+
+    $scope.cart = Cart;
+
+
+
+
   });
