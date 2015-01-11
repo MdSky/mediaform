@@ -1,0 +1,120 @@
+<h2>Neuer Auftrag erfassen</h2>
+
+
+<form class="form-horizontal" name="NewMediumForm">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Quelle</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="inputSourceType" class="col-sm-2 control-label">Typ</label>
+
+        <div class="col-sm-8">
+          <select id="inputSourceType" class="form-control" ng-model="article.sourceSel" ng-options="medium.name for medium in sourceMedia"></select>
+        </div>
+
+        <div class="col-sm-2">
+          <img src="{{article.sourceSel.image}}" class="img-responsive" alt="article.sourceSel.name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputSourceName" class="col-sm-2 control-label">Beschriftung</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputSourceName" name="inputSourceName" placeholder="Beschriftung der Kassette"
+                 aria-describedby="helpBlock" ng-model="article.name" required="">
+          <span class="error" ng-show="NewMediumForm.inputSourceName.$error.required">Required!</span><br>
+          <span id="helpBlock" class="help-block">Geben Sie an, wie Ihre Kassette beschriftet ist. Dies hilft uns die Kassette zu zu ordnen.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Ziel</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group">
+        <label for="inputTargetType" class="col-sm-2 control-label">Typ</label>
+
+        <div class="col-sm-8">
+          <select id="inputTargetType" class="form-control" ng-model="article.targetSel" ng-options="medium.name for medium in targetMedia"></select>
+        </div>
+
+        <div class="col-sm-2">
+          <img src="{{article.targetSel.image}}" class="img-responsive" alt="article.targetSel.name">
+        </div>
+
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="inputAmount" class="col-sm-2 control-label">Anzahl</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputAmount" placeholder="Anzahl" ng-model="article.amount">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputTargetTitle" class="col-sm-2 control-label">Titel</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputTargetTitle" placeholder="H&uuml;llentitel" ng-model="article.targetTitle">
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Kosten&uuml;bersicht</div>
+
+    <div class="table-responsive">
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nr</th>
+          <th>Auftrag</th>
+          <th class="text-right">Kosten [CHF]</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>&Uuml;berspielung, Digitalisierung</td>
+          <td class="text-right">{{article.transactionPrice}}</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>{{article.amount}} Kopien à CHF {{article.copyPrice}}</td>
+          <td class="text-right">{{article.amount * article.copyPrice}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="3" class="text-right"><strong>Total {{article.totalPrice}}</strong></td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-right">
+    <a class="btn btn-default" ng-href="#/" role="button">Abbrechen</a>
+    <a class="btn btn-primary btn-sm" ng-click="cart.addArticle(article);" ng-href="#/" role="button">Hinzuf&uuml;gen</a>
+  </div>
+
+  <br>
+
+</form>
+

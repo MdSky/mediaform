@@ -2,7 +2,7 @@
 
 <div ng-hide="cart.getItems().length" class="alert alert-warning">Noch keine Medien enthalten.</div>
 <div ng-hide="cart.getItems().length" class="text-right">
-<a class="btn btn-success" ng-href="#/newmedia" role="button">Neue Medien hinzuf&uuml;gen</a>
+<a class="btn btn-success" ng-href="#/newmedium" role="button">Neue Medien hinzuf&uuml;gen</a>
   <br/>
 </div>
 
@@ -19,16 +19,16 @@
 
     <tbody>
     <tr ng-repeat="item in cart.getItems() track by $index">
-      <th scope="row">{{item.id}}</th>
+      <th scope="row">{{$index+1}}</th>
       <td>Name: {{item.name}}  Anzahl: {{item.amount}}</td>
-      <td class="text-right">{{item.price}}</td>
+      <td class="text-right">{{item.totalPrice}}</td>
     </tr>
     </tbody>
 
     <tfoot>
     <tr>
       <td colspan="3" class="text-right">
-        <a class="btn btn-success" ng-href="#/newmedia" role="button">Weitere Medien hinzuf&uuml;gen</a>
+        <a class="btn btn-success" ng-href="#/newmedium" role="button">Weitere Medien hinzuf&uuml;gen</a>
       </td>
     </tr>
     <tr>
@@ -37,9 +37,13 @@
     </tfoot>
   </table>
 
-  <div ng-show="cart.getItems().length" class="text-right" style="margin-top: 15px">
-    <a class="btn btn-primary" ng-href="#/address" role="button">weiter</a>
-  </div>
+  <nav>
+    <ul class="pager">
+      <li ng-hide="cart.getItems() == 0" class="next"><a href="#/address">weiter <span aria-hidden="true">&rarr;</span></a></li>
+      <li ng-show="cart.getItems() == 0" class="next disabled"><a href="#/">weiter <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+  </nav>
+
   <br>
 
 </div>

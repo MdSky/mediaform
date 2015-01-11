@@ -1,8 +1,7 @@
 [
-  {"id": "1", "name": "DVD", "image" : "images/DVD.jpg" },
-  {"id": "2", "name": "Blu-Ray", "image" : "images/Blu-Ray.jpg"},
-  {"id": "3", "name": "CD", "image" : "images/CD.jpg" },
-  {"id": "4", "name": "HDD (Festplatte)", "image" : "images/HDD.jpg" },
-  {"id": "5", "name": "USB-Stick", "image" : "images/USB.jpg" }
+  {"id": "1", "name": "DVD", "image" : "images/DVD.png" },
+  {"id": "2", "name": "Blu-Ray", "image" : "images/BLURAY.png"},
+  {"id": "3", "name": "CD", "image" : "images/CD.png" },
+  {"id": "4", "name": "HDD (Festplatte)", "image" : "images/HDD.png" },
+  {"id": "5", "name": "USB-Stick", "image" : "images/USBStick.png" }
 ]
-s

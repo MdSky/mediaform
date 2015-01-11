@@ -1,0 +1,11 @@
+[
+  {"id": "1", "from": "VHS / S-VHS", "to" : "DVD", "transitionPrice" : 30, "copyPrice" : 10},
+  {"id": "2", "from": "VHS-C", "to" : "DVD", "transitionPrice" : 20, "copyPrice" : 10},
+  {"id": "3", "from": "Video8", "to" : "DVD", "transitionPrice" : 20, "copyPrice" : 10},
+  {"id": "4", "from": "miniDV", "to" : "DVD", "transitionPrice" : 20, "copyPrice" : 10},
+  {"id": "5", "from": "VHS / S-VHS", "to" : "Blu-Ray", "transitionPrice" : 30, "copyPrice" : 20},
+  {"id": "6", "from": "VHS-C", "to" : "Blu-Ray", "transitionPrice" : 20, "copyPrice" : 20},
+  {"id": "7", "from": "Video8", "to" : "DVD", "transitionPrice" : 20, "copyPrice" : 20},
+  {"id": "8", "from": "miniDV", "to" : "DVD", "transitionPrice" : 20, "copyPrice" : 20},
+  {"id": "9", "from": "MC (Musikkassette)", "to" : "CD", "transitionPrice" : 10, "copyPrice" : 5}
+]

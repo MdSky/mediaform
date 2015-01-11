@@ -26,8 +26,8 @@ mediaformApp.config(function ($routeProvider) {
         templateUrl: 'views/overview.html',
         controller: 'OverviewCtrl'
       })
-      .when('/newmedia', {
-        templateUrl: 'views/newmedia.html',
+      .when('/newmedium', {
+        templateUrl: 'views/newmedium.html',
         controller: 'NewMediaCtrl'
       })
       .when('/address', {

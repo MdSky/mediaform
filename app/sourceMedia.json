@@ -1,7 +1,7 @@
 [
-  {"id": "1", "name": "VHS", "image" : "images/VHS.jpg" },
-  {"id": "2", "name": "VHS-C", "image" : "images/VHS-C.jpg"},
-  {"id": "3", "name": "miniDV", "image" : "images/miniDV.jpg" },
-  {"id": "4", "name": "MC (Musikkassette)", "image" : "images/MC.jpg" }
+  {"id": "1", "name": "VHS / S-VHS", "image" : "images/VHS.png" },
+  {"id": "2", "name": "VHS-C", "image" : "images/VHSC.png"},
+  {"id": "3", "name": "Video8", "image" : "images/Video8.png"},
+  {"id": "4", "name": "miniDV", "image" : "images/miniDV.png" },
+  {"id": "5", "name": "MC (Musikkassette)", "image" : "images/MC.png" }
 ]
-s
