@@ -1,7 +1,7 @@
 [
-  {"id": "1", "name": "DVD", "image" : "images/DVD.png" },
-  {"id": "2", "name": "Blu-Ray", "image" : "images/BLURAY.png"},
-  {"id": "3", "name": "CD", "image" : "images/CD.png" },
-  {"id": "4", "name": "HDD (Festplatte)", "image" : "images/HDD.png" },
-  {"id": "5", "name": "USB-Stick", "image" : "images/USBStick.png" }
+  {"id": "1", "name": "DVD", "image" : "images/DVD.png", "price" : 10, "copies" : true},
+  {"id": "2", "name": "Blu-Ray", "image" : "images/BLURAY.png", "price" : 20, "copies" : true},
+  {"id": "3", "name": "CD", "image" : "images/CD.png", "price" : 10, "copies" : true},
+  {"id": "4", "name": "HDD (eigene mitgelieferte Festplatte)", "image" : "images/HDD.png", "copies" : false, "data" : true},
+  {"id": "5", "name": "USB-Stick (von DigitalSky)", "image" : "images/USBStick.png", "price" : 30, "copies" : false, "data" : true}
 ]

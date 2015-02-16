@@ -16,7 +16,7 @@
         </div>
 
         <div class="col-sm-2">
-          <img src="{{article.sourceSel.image}}" class="img-responsive" alt="article.sourceSel.name">
+          <img src="{{article.sourceSel.image}}" class="img-responsive" alt="article.sourceSel.name" style="height: 60px">
         </div>
       </div>
 
@@ -25,9 +25,8 @@
 
         <div class="col-sm-10">
           <input type="text" class="form-control" id="inputSourceName" name="inputSourceName" placeholder="Beschriftung der Kassette"
-                 aria-describedby="helpBlock" ng-model="article.name" required="">
-          <span class="error" ng-show="NewMediumForm.inputSourceName.$error.required">Required!</span><br>
-          <span id="helpBlock" class="help-block">Geben Sie an, wie Ihre Kassette beschriftet ist. Dies hilft uns die Kassette zu zu ordnen.</span>
+                 aria-describedby="helpBlock" ng-model="article.name" required>
+          <div class="text-danger" ng-show="NewMediumForm.inputSourceName.$error.required">Die Angaben der Beschriftung ist zwingend n&ouml;tig, damit wir die Kassette zuordnen k&ouml;nnen.<br/></div>
         </div>
       </div>
     </div>
@@ -47,22 +46,25 @@
         </div>
 
         <div class="col-sm-2">
-          <img src="{{article.targetSel.image}}" class="img-responsive" alt="article.targetSel.name">
+          <img src="{{article.targetSel.image}}" class="img-responsive" alt="article.targetSel.name" style="height: 60px">
         </div>
 
       </div>
 
 
 
-      <div class="form-group">
+      <div class="form-group" ng-show="article.targetSel.copies">
         <label for="inputAmount" class="col-sm-2 control-label">Anzahl</label>
 
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputAmount" placeholder="Anzahl" ng-model="article.amount">
+          <input type="number" min="1" max="50" class="form-control" id="inputAmount" name="inputAmount" placeholder="Anzahl" ng-model="article.amount" required>
+          <div class="text-danger" ng-show="NewMediumForm.inputAmount.$error.min">Es muss mindestens 1 Kopie gew&auml;hlt werden.<br/></div>
+          <div class="text-danger" ng-show="NewMediumForm.inputAmount.$error.max">Es sind maximal 50 Kopien zugelassen.<br/></div>
+          <div class="text-danger" ng-show="NewMediumForm.inputAmount.$error.required">Bitte geben Sie die Anzahl Kopien an (1 - 50 St&uuml;ck).<br/></div>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" ng-hide="article.targetSel.data">
         <label for="inputTargetTitle" class="col-sm-2 control-label">Titel</label>
 
         <div class="col-sm-10">
@@ -92,17 +94,17 @@
         <tr>
           <th scope="row">1</th>
           <td>&Uuml;berspielung, Digitalisierung</td>
-          <td class="text-right">{{article.transactionPrice}}</td>
+          <td class="text-right">{{article.sourceSel.price}}</td>
         </tr>
         <tr>
           <th scope="row">2</th>
-          <td>{{article.amount}} Kopien à CHF {{article.copyPrice}}</td>
-          <td class="text-right">{{article.amount * article.copyPrice}}</td>
+          <td>{{article.amount}} Kopien à CHF {{article.targetSel.price}}</td>
+          <td class="text-right">{{article.amount * article.targetSel.price}}</td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-          <td colspan="3" class="text-right"><strong>Total {{article.totalPrice}}</strong></td>
+          <td colspan="3" class="text-right"><strong>Total {{article.sourceSel.price + article.amount * article.targetSel.price}}</strong></td>
         </tr>
         </tfoot>
       </table>
