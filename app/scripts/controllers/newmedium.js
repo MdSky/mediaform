@@ -8,10 +8,26 @@
  * Controller of the mediaformApp
  */
 angular.module('mediaformApp')
-  .controller('NewMediaCtrl', function ($scope, $http, Cart) {
+  .controller('NewMediaCtrl', function ($scope, $location, $http, Cart) {
     $scope.cart = Cart;
 
-    $scope.article = {name : '', amount : 1, targetTitle : '',  transactionPrice : 30, copyPrice : 10, totalPrice : 40};
+    $scope.article = {name : '',
+        amount : 1,
+        targetTitle : '',
+        transactionPrice : 30,
+        copyPrice : 10,
+        totalPrice : 40,
+        calcPrice: function() {
+            if (this.targetSel.copies) {
+                this.totalPrice = this.sourceSel.price + this.amount * this.targetSel.price;
+            } else {
+                if (this.targetSel.price) {
+                    this.totalPrice = this.sourceSel.price + this.targetSel.price;
+                } else {
+                    this.totalPrice = this.sourceSel.price;
+                }
+            }
+        }};
 
     // load source Media from REST Interface
     $http.get('sourceMedia.json').then(function(sourceMediaResponse) {
@@ -25,9 +41,17 @@ angular.module('mediaformApp')
       $scope.article.targetSel = $scope.targetMedia[0];
     });
 
-    // load pricing from REST Interface
-    $http.get('pricing.json').then(function(pricingResponse) {
-      $scope.pricing = pricingResponse.data;
-    });
+    // submit check
+    $scope.submit = function(form) {
+        // Trigger validation flag.
+        $scope.submitted = true;
+
+        // If form is invalid, return and let AngularJS show validation errors.
+        if (form.$invalid) {
+            return;
+        } else {
+            $location.path( '#/' );
+        }
+    };
 
   });

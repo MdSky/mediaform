@@ -1,7 +1,7 @@
 <h2>Neuer Auftrag erfassen</h2>
 
 
-<form class="form-horizontal" name="NewMediumForm">
+<form class="form-horizontal" name="NewMediumForm" novalidate role="form" ng-class="{submitted:submitted}">
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -12,7 +12,7 @@
         <label for="inputSourceType" class="col-sm-2 control-label">Typ</label>
 
         <div class="col-sm-8">
-          <select id="inputSourceType" class="form-control" ng-model="article.sourceSel" ng-options="medium.name for medium in sourceMedia"></select>
+          <select id="inputSourceType" class="form-control" ng-model="article.sourceSel" ng-options="medium.name for medium in sourceMedia" ng-change="article.calcPrice()"></select>
         </div>
 
         <div class="col-sm-2">
@@ -26,7 +26,7 @@
         <div class="col-sm-10">
           <input type="text" class="form-control" id="inputSourceName" name="inputSourceName" placeholder="Beschriftung der Kassette"
                  aria-describedby="helpBlock" ng-model="article.name" required>
-          <div class="text-danger" ng-show="NewMediumForm.inputSourceName.$error.required">Die Angaben der Beschriftung ist zwingend n&ouml;tig, damit wir die Kassette zuordnen k&ouml;nnen.<br/></div>
+            <div class="text-danger" ng-show="submitted && NewMediumForm.inputSourceName.$error.required">Die Angaben der Beschriftung ist zwingend n&ouml;tig, damit wir die Kassette zuordnen k&ouml;nnen.<br/></div>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
         <label for="inputTargetType" class="col-sm-2 control-label">Typ</label>
 
         <div class="col-sm-8">
-          <select id="inputTargetType" class="form-control" ng-model="article.targetSel" ng-options="medium.name for medium in targetMedia"></select>
+          <select id="inputTargetType" class="form-control" ng-model="article.targetSel" ng-options="medium.name for medium in targetMedia" ng-change="article.calcPrice()"></select>
         </div>
 
         <div class="col-sm-2">
@@ -57,27 +57,59 @@
         <label for="inputAmount" class="col-sm-2 control-label">Anzahl</label>
 
         <div class="col-sm-10">
-          <input type="number" min="1" max="50" class="form-control" id="inputAmount" name="inputAmount" placeholder="Anzahl" ng-model="article.amount" required>
-          <div class="text-danger" ng-show="NewMediumForm.inputAmount.$error.min">Es muss mindestens 1 Kopie gew&auml;hlt werden.<br/></div>
-          <div class="text-danger" ng-show="NewMediumForm.inputAmount.$error.max">Es sind maximal 50 Kopien zugelassen.<br/></div>
-          <div class="text-danger" ng-show="NewMediumForm.inputAmount.$error.required">Bitte geben Sie die Anzahl Kopien an (1 - 50 St&uuml;ck).<br/></div>
+          <input type="number" min="1" max="50" class="form-control" id="inputAmount" name="inputAmount" placeholder="Anzahl" ng-model="article.amount" ng-change="article.calcPrice()" required>
+          <div class="text-danger" ng-show="submitted && NewMediumForm.inputAmount.$error.min">Es muss mindestens 1 Kopie gew&auml;hlt werden.<br/></div>
+          <div class="text-danger" ng-show="submitted && NewMediumForm.inputAmount.$error.max">Es sind maximal 50 Kopien zugelassen.<br/></div>
+          <div class="text-danger" ng-show="submitted && NewMediumForm.inputAmount.$error.required">Bitte geben Sie die Anzahl Kopien an (1 - 50 St&uuml;ck).<br/></div>
         </div>
       </div>
 
-      <div class="form-group" ng-hide="article.targetSel.data">
-        <label for="inputTargetTitle" class="col-sm-2 control-label">Titel</label>
+      <table class="table" ng-hide="article.targetSel.data">
+        <thead><th colspan="2">Beschriftung der H&uuml;lle</th></thead>
+        <tbody>
+        <tr>
+          <td style="width: auto">
+              <input type="text" class="form-control" id="inputTargetTitle" name="inputTargetTitle" placeholder="H&uuml;llentitel" ng-model="article.cover.title" required>
+              <div class="text-danger" ng-show="submitted && NewMediumForm.inputTargetTitle.$error.required">Bitte geben Sie zwingend einen H&uuml;llentitel an.<br/></div>
+              <br/>
+              <input type="text" class="form-control" id="inputTargetTextFrontside" placeholder="Text Vorderseite" ng-model="article.cover.frontsidetext">
+              <br/>
+              <input type="text" class="form-control" id="inputTargetTextBack" placeholder="Text R&uuml;cken" ng-model="article.cover.backtext">
+              <br/>
+              <input type="text" class="form-control" id="inputTargetTextBackside" placeholder="Text R&uuml;ckseite" ng-model="article.cover.backsidetext">
+          </td>
+          <td style="width: 150px; vertical-align: middle">
+            <img  src="images/Layout_Help_CoverTitle1.gif" class="img-responsive" alt="Titel" style="width: 150px;">
+          </td>
+        </tr>
+        </tbody>
+      </table>
 
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputTargetTitle" placeholder="H&uuml;llentitel" ng-model="article.targetTitle">
-        </div>
-      </div>
+      <table class="table" ng-hide="article.targetSel.data">
+        <thead><th colspan="2">Beschriftung des Mediums</th></thead>
+        <tbody>
+        <tr>
+          <td style="width: auto">
+            <input type="text" class="form-control" id="inputTargetMediumTitle" name="inputTargetMediumTitle" placeholder="Mediumtitel" ng-model="article.medium.title" required>
+            <div class="text-danger" ng-show="submitted && NewMediumForm.inputTargetMediumTitle.$error.required">Bitte geben Sie zwingend einen Mediumtitel an.<br/></div>
+            <br/>
+            <input type="text" class="form-control" id="inputTargetMediumText" placeholder="Mediumtext" ng-model="article.medium.text">
+          </td>
+          <td style="width: 150px; vertical-align: middle">
+            <img  src="images/Layout_Help_CoverTitle1.gif" class="img-responsive" alt="Titel" style="width: 150px;">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+
 
 
     </div>
   </div>
 
   <div class="panel panel-default">
-    <div class="panel-heading">Kosten&uuml;bersicht</div>
+    <div class="panel-heading"><h3 class="panel-title">Kosten&uuml;bersicht</h3></div>
 
     <div class="table-responsive">
 
@@ -86,7 +118,7 @@
         <tr>
           <th>Nr</th>
           <th>Auftrag</th>
-          <th class="text-right">Kosten [CHF]</th>
+          <th class="text-right">Kosten</th>
         </tr>
         </thead>
 
@@ -94,17 +126,22 @@
         <tr>
           <th scope="row">1</th>
           <td>&Uuml;berspielung, Digitalisierung</td>
-          <td class="text-right">{{article.sourceSel.price}}</td>
+          <td class="text-right">{{article.sourceSel.price | currency:"CHF ": 0}}</td>
         </tr>
-        <tr>
+        <tr ng-show="article.targetSel.copies">
           <th scope="row">2</th>
-          <td>{{article.amount}} Kopien à CHF {{article.targetSel.price}}</td>
-          <td class="text-right">{{article.amount * article.targetSel.price}}</td>
+          <td>{{article.amount}} Kopien à {{article.targetSel.price | currency:"CHF ": 0}}</td>
+          <td class="text-right">{{article.amount * article.targetSel.price | currency:"CHF ": 0}}</td>
+        </tr>
+        <tr ng-show="article.targetSel.data && article.targetSel.price">
+          <th scope="row">2</th>
+          <td>{{article.targetSel.name}}</td>
+          <td class="text-right">{{article.targetSel.price | currency:"CHF ": 0}}</td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-          <td colspan="3" class="text-right"><strong>Total {{article.sourceSel.price + article.amount * article.targetSel.price}}</strong></td>
+          <td colspan="3" class="text-right"><strong>Total {{article.totalPrice | currency:"CHF ": 0}}</strong></td>
         </tr>
         </tfoot>
       </table>
@@ -113,7 +150,8 @@
 
   <div class="text-right">
     <a class="btn btn-default" ng-href="#/" role="button">Abbrechen</a>
-    <a class="btn btn-primary btn-sm" ng-click="cart.addArticle(article);" ng-href="#/" role="button">Hinzuf&uuml;gen</a>
+    <button ng-click="submit(NewMediumForm); cart.addArticle(article);" class="btn btn-primary btn-sm">Hinzuf&uuml;gen</button>
+    <div class="text-danger" ng-show="submitted && NewMediumForm.$invalid">Das Formular enth&auml;lt fehlerhafte Eingaben.<br/></div>
   </div>
 
   <br>

@@ -68,6 +68,11 @@ body {
   }
 }
 
+form.submitted .ng-invalid
+{
+  border:1px solid #f00;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
