@@ -50,6 +50,7 @@ angular.module('mediaformApp')
         if (form.$invalid) {
             return;
         } else {
+            $scope.cart.addArticle($scope.article);
             $location.path( '#/' );
         }
     };
