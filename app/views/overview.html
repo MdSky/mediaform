@@ -1,8 +1,13 @@
+<div ng-show="message" class="alert alert-danger fade in">
+  <a href="#/" class="close" data-dismiss="alert">&times;</a>
+  {{message}}
+</div>
+
 <h1>Bestell&uuml;bersicht <small>Schritt 1</small></h1>
 
 <div ng-hide="cart.getItems().length" class="alert alert-warning">Noch keine Medien enthalten.</div>
 <div ng-hide="cart.getItems().length" class="text-right">
-<a class="btn btn-success" ng-href="#/newmedium" role="button">Neue Medien hinzuf&uuml;gen</a>
+<a class="btn btn-success" ng-href="#/newmedium" role="button" ng-click="selectNewMedia()">Neue Medien hinzuf&uuml;gen</a>
   <br/>
 </div>
 
@@ -13,7 +18,8 @@
     <tr>
       <th>Nr</th>
       <th>Auftrag</th>
-      <th class="text-right">Kosten [CHF]</th>
+      <th>Aktionen</th>
+      <th class="text-right">Kosten</th>
     </tr>
     </thead>
 
@@ -21,18 +27,19 @@
     <tr ng-repeat="item in cart.getItems() track by $index">
       <th scope="row">{{$index+1}}</th>
       <td>Name: {{item.name}}  Anzahl: {{item.amount}}</td>
-      <td class="text-right">{{item.totalPrice}}</td>
+      <td><a ng-href="#/newmedium" ng-click="selectMedia(item)">&auml;ndern</a>&nbsp;<a ng-href="#/newmedium">l&ouml;schen</a></td>
+      <td class="text-right">{{item.totalPrice | currency:"CHF ": 0}}</td>
     </tr>
     </tbody>
 
     <tfoot>
     <tr>
-      <td colspan="3" class="text-right">
-        <a class="btn btn-success" ng-href="#/newmedium" role="button">Weitere Medien hinzuf&uuml;gen</a>
+      <td colspan="4" class="text-right">
+        <a class="btn btn-success" ng-href="#/newmedium" role="button" ng-click="selectNewMedia()">Weitere Medien hinzuf&uuml;gen</a>
       </td>
     </tr>
     <tr>
-      <td colspan="3" class="text-right"><strong>Total {{cart.sum() | currency}}</strong></td>
+      <td colspan="4" class="text-right"><strong>Total {{cart.sum() | currency:"CHF ": 0}}</strong></td>
     </tr>
     </tfoot>
   </table>
